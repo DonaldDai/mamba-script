@@ -1,0 +1,92 @@
+Collecting causal-conv1d
+  Downloading causal_conv1d-1.1.1.tar.gz (6.6 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: torch in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from causal-conv1d) (1.8.1)
+Requirement already satisfied: packaging in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from causal-conv1d) (23.2)
+Collecting buildtools (from causal-conv1d)
+  Downloading buildtools-1.0.6.tar.gz (446 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 446.5/446.5 kB 3.5 MB/s eta 0:00:00
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting ninja (from causal-conv1d)
+  Downloading ninja-1.11.1.1-py2.py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl.metadata (5.3 kB)
+Collecting sqlalchemy (from buildtools->causal-conv1d)
+  Downloading SQLAlchemy-2.0.25-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.6 kB)
+Collecting argparse (from buildtools->causal-conv1d)
+  Downloading argparse-1.4.0-py2.py3-none-any.whl (23 kB)
+Collecting twisted (from buildtools->causal-conv1d)
+  Downloading twisted-23.10.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting simplejson (from buildtools->causal-conv1d)
+  Downloading simplejson-3.19.2-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.1 kB)
+Collecting furl (from buildtools->causal-conv1d)
+  Downloading furl-2.1.3-py2.py3-none-any.whl (20 kB)
+Requirement already satisfied: requests in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from buildtools->causal-conv1d) (2.31.0)
+Collecting docopt (from buildtools->causal-conv1d)
+  Downloading docopt-0.6.2.tar.gz (25 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: python-dateutil in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from buildtools->causal-conv1d) (2.8.2)
+Collecting jinja2 (from buildtools->causal-conv1d)
+  Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 1.3 MB/s eta 0:00:00
+Collecting redo (from buildtools->causal-conv1d)
+  Downloading redo-2.0.4-py2.py3-none-any.whl (12 kB)
+Requirement already satisfied: typing_extensions in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from torch->causal-conv1d) (4.9.0)
+Requirement already satisfied: numpy in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from torch->causal-conv1d) (1.20.0)
+Requirement already satisfied: six>=1.8.0 in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from furl->buildtools->causal-conv1d) (1.16.0)
+Collecting orderedmultidict>=1.0.1 (from furl->buildtools->causal-conv1d)
+  Downloading orderedmultidict-1.0.1-py2.py3-none-any.whl (11 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->buildtools->causal-conv1d)
+  Downloading MarkupSafe-2.1.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.0 kB)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from requests->buildtools->causal-conv1d) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from requests->buildtools->causal-conv1d) (3.6)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from requests->buildtools->causal-conv1d) (2.1.0)
+Requirement already satisfied: certifi>=2017.4.17 in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from requests->buildtools->causal-conv1d) (2023.11.17)
+Collecting greenlet!=0.4.17 (from sqlalchemy->buildtools->causal-conv1d)
+  Downloading greenlet-3.0.3-cp38-cp38-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+Collecting attrs>=21.3.0 (from twisted->buildtools->causal-conv1d)
+  Downloading attrs-23.2.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting automat>=0.8.0 (from twisted->buildtools->causal-conv1d)
+  Downloading Automat-22.10.0-py2.py3-none-any.whl (26 kB)
+Collecting constantly>=15.1 (from twisted->buildtools->causal-conv1d)
+  Downloading constantly-23.10.4-py3-none-any.whl.metadata (1.8 kB)
+Collecting hyperlink>=17.1.1 (from twisted->buildtools->causal-conv1d)
+  Downloading hyperlink-21.0.0-py2.py3-none-any.whl (74 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.6/74.6 kB 1.2 MB/s eta 0:00:00
+Collecting incremental>=22.10.0 (from twisted->buildtools->causal-conv1d)
+  Downloading incremental-22.10.0-py2.py3-none-any.whl (16 kB)
+Collecting zope-interface>=5 (from twisted->buildtools->causal-conv1d)
+  Downloading zope.interface-6.1-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (41 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.7/41.7 kB 460.5 kB/s eta 0:00:00
+Requirement already satisfied: setuptools in /home/yichao/dev_tools/miniconda3/envs/scbert/lib/python3.8/site-packages (from zope-interface>=5->twisted->buildtools->causal-conv1d) (59.8.0)
+Downloading ninja-1.11.1.1-py2.py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl (307 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 307.2/307.2 kB 3.7 MB/s eta 0:00:00
+Downloading simplejson-3.19.2-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (136 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 136.6/136.6 kB 1.6 MB/s eta 0:00:00
+Downloading SQLAlchemy-2.0.25-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 21.2 MB/s eta 0:00:00
+Downloading twisted-23.10.0-py3-none-any.whl (3.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 21.9 MB/s eta 0:00:00
+Downloading attrs-23.2.0-py3-none-any.whl (60 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.8/60.8 kB 797.1 kB/s eta 0:00:00
+Downloading constantly-23.10.4-py3-none-any.whl (13 kB)
+Downloading greenlet-3.0.3-cp38-cp38-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (622 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 622.3/622.3 kB 8.0 MB/s eta 0:00:00
+Downloading MarkupSafe-2.1.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Downloading zope.interface-6.1-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (249 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 249.3/249.3 kB 4.5 MB/s eta 0:00:00
+Building wheels for collected packages: causal-conv1d, buildtools, docopt
+  Building wheel for causal-conv1d (setup.py): started
+  Building wheel for causal-conv1d (setup.py): finished with status 'error'
+  Running setup.py clean for causal-conv1d
+  Building wheel for buildtools (setup.py): started
+  Building wheel for buildtools (setup.py): finished with status 'done'
+  Created wheel for buildtools: filename=buildtools-1.0.6-py3-none-any.whl size=512378 sha256=87fbd0eca96b58af4b70111699909fa7ad0b69ff34af95d9fb84b3ac019c3072
+  Stored in directory: /home/yichao/.cache/pip/wheels/0d/10/a0/6f03e680cfc4483f74ef7703fe13c5ed3119b8d491a1ed935a
+  Building wheel for docopt (setup.py): started
+  Building wheel for docopt (setup.py): finished with status 'done'
+  Created wheel for docopt: filename=docopt-0.6.2-py2.py3-none-any.whl size=13724 sha256=942e6ad81279d26548104aeed3a7625b578a3eb08586b87927193f80468e2bae
+  Stored in directory: /home/yichao/.cache/pip/wheels/56/ea/58/ead137b087d9e326852a851351d1debf4ada529b6ac0ec4e8c
+Successfully built buildtools docopt
+Failed to build causal-conv1d
