@@ -23,6 +23,10 @@ import torch.nn.functional as F
 from torch.nn.modules.loss import _WeightedLoss
 
 
+def get_job_mark():
+    job_id = os.environ.get("SLURM_JOB_ID", "default_job_id")
+    job_name = os.environ.get("SLURM_JOB_NAME", "default_job_name")
+    return f'{job_id}-{job_name}'
 
 def seed_all(seed_value, cuda_deterministic=False):
     """
@@ -109,7 +113,7 @@ def save_best_ckpt(epoch, model, optimizer, scheduler, losses, model_name, ckpt_
             'scheduler_state_dict': scheduler.state_dict(),
             'losses': losses,
         },
-        f'{ckpt_folder}{model_name}_best.pth'
+        f'{ckpt_folder}{model_name}_{epoch}_best.pth'
     )
 
 def get_reduced(tensor, current_device, dest_device, world_size):

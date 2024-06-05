@@ -31,6 +31,9 @@ import pickle as pkl
 from mamba_ssm import Mamba, MambaLMHeadModel
 from mamba_ssm.models.config_mamba import MambaConfig
 
+import datetime
+import wandb
+
 os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
 
 parser = argparse.ArgumentParser()
@@ -46,14 +49,15 @@ parser.add_argument("--valid_every", type=int, default=1, help='Number of traini
 parser.add_argument("--pos_embed", type=bool, default=True, help='Using Gene2vec encoding or not.')
 parser.add_argument("--data_path", type=str, default='./data/Zheng68K.h5ad', help='Path of data for finetune.')
 parser.add_argument("--model_path", type=str, default='./panglao_pretrained_mamba.pth', help='Path of pretrained model.')
-parser.add_argument("--ckpt_dir", type=str, default='./ckpts/', help='Directory of checkpoint to save.')
+parser.add_argument("--ckpt_dir", type=str, default='./ckpts/finetune/', help='Directory of checkpoint to save.')
 parser.add_argument("--model_name", type=str, default='finetune', help='Finetuned model name.')
 
 args = parser.parse_args()
-rank = int(os.environ["RANK"])
+rank = int(os.environ.get("RANK", 0))
 # local_rank = args.local_rank
 local_rank = int(os.environ["LOCAL_RANK"])
 is_master = local_rank == 0
+is_global_master = rank == 0
 
 SEED = args.seed
 EPOCHS = args.epoch
@@ -78,6 +82,27 @@ device = torch.device("cuda", local_rank)
 world_size = torch.distributed.get_world_size()
 
 seed_all(SEED + torch.distributed.get_rank())
+
+if is_global_master:
+    wandb.login(key="fa1a9ae37df78a027fdc9c43a3892529b38fc4ce")
+    # 准备上传参数
+    wandb.init(
+        project="scbert-mamba-finetune",
+        name=get_job_mark(),
+        save_code=True,
+        job_type="finetune",
+        tags=["finetune", "train", "mamba"],
+        notes=f"finetune-{datetime.datetime.now()}",
+        id=get_job_mark(),
+        # track hyperparameters and run metadata
+        config={
+            "learning_rate": LEARNING_RATE,
+            "architecture": "MAMBA",
+            "dataset": args.data_path,
+            "epochs": EPOCHS,
+        }
+    )
+
 
 
 class SCDataset(Dataset):
@@ -281,6 +306,8 @@ for i in range(1, EPOCHS+1):
     epoch_acc = get_reduced(epoch_acc, local_rank, 0, world_size)
     if is_master:
         print(f'    ==  Epoch: {i} | Training Loss: {epoch_loss:.6f} | Accuracy: {epoch_acc:6.4f}%  ==')
+    if is_global_master:
+        wandb.log({"accuracy": epoch_acc, "loss": epoch_loss})
     dist.barrier()
     scheduler.step()
 
@@ -328,11 +355,11 @@ for i in range(1, EPOCHS+1):
             # print("f1:"+str(f1))
             val_loss = running_loss / index
             val_loss = get_reduced(val_loss, local_rank, 0, world_size)
-            if is_master:
+            if is_global_master:
                 print(f'    ==  Epoch: {i} | Validation Loss: {val_loss:.6f} | F1 Score: {f1:.6f}  ==')
                 print(confusion_matrix(truths, predictions))
                 print(classification_report(truths, predictions, target_names=label_dict.tolist(), digits=4))
-            if cur_acc > max_acc:
+            if is_global_master and cur_acc > max_acc:
                 max_acc = cur_acc
                 trigger_times = 0
                 save_best_ckpt(i, model, optimizer, scheduler, val_loss, model_name, ckpt_dir)
