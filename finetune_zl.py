@@ -55,7 +55,7 @@ parser.add_argument("--model_name", type=str, default='finetune', help='Finetune
 args = parser.parse_args()
 rank = int(os.environ.get("RANK", 0))
 # local_rank = args.local_rank
-local_rank = int(os.environ["LOCAL_RANK"])
+local_rank = int(os.environ.get("LOCAL_RANK", 0))
 is_master = local_rank == 0
 is_global_master = rank == 0
 
